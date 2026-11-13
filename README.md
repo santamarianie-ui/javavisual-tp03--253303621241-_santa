@@ -160,3 +160,21 @@ Nama KarakterTipe (CharacterType)LevelAlasan Pemilihan Tipe & LevelRaka
  
 # Link Google Docs - Bagian D
 [https://1drv.ms/b/c/251df1b2271152b7/IQDbopTQA6o0TomgWWKhvZvJAc8tDxn3JBCgbx3WMEovtIM?e=fhNfYt]
+
+# Character Manager Sprint 4 
+
+Aplikasi Character Manager dibuat menggunakan Java dan Java Swing untuk menampilkan daftar karakter beserta role dan levelnya. Proyek ini menerapkan pemisahan tanggung jawab antara Model dan View.
+TP10 — Theming, Properti Komponen, dan Analisis MVC
+1. Screenshot sebelum dan sesudah
+Sebelum TP10 (v0.3) [output-terminalsebelumv0.3.png]
+
+Sesudah TP10 (v0.4) [output-terminalsesudahv0.4.png]
+
+Pada versi v0.3, daftar karakter ditampilkan dengan tampilan sederhana. Pada versi v0.4, setiap kartu karakter memiliki warna latar sesuai role, sedangkan level 5 atau lebih ditampilkan dengan teks berwarna emas dan tebal. Versi v0.4 juga menggunakan pack() agar ukuran jendela menyesuaikan komponen yang ditampilkan.
+2. Alasan warna disimpan di AppTheme
+Warna merupakan bagian dari tampilan antarmuka sehingga pengaturannya diletakkan di AppTheme pada package view. Class Character termasuk Model dan sebaiknya hanya menyimpan data karakter, seperti nama, tipe, dan level, bukan informasi visual. Dengan pemisahan ini, tema aplikasi dapat diubah tanpa mengubah struktur atau logika data karakter. Selain itu, Model tidak perlu bergantung pada class tampilan seperti Color dari AWT atau komponen Swing.
+3. Dua properti tambahan dan alasannya
+4. Tooltip pada kartu karakter — kartu menampilkan informasi nama, role, dan level ketika pointer diarahkan ke kartu. Properti ini memudahkan pengguna melihat detail karakter tanpa menambah banyak teks pada tampilan utama.
+5. setEnabled(false) untuk karakter level 1 — kartu dan label karakter dengan level 1 dibuat tidak aktif. Ini menjadi penanda visual bahwa karakter tersebut belum dapat digunakan, sekaligus menunjukkan penggunaan properti komponen Swing berdasarkan nilai level karakter.
+6. Link Google Docs — Bagian D
+Link Google Docs: [https://1drv.ms/b/c/251df1b2271152b7/IQBoXvXcTlMYRKOfSt3kbU5ZAW36omJbhIbst6hcX-5EPMg?e=lPLy1B] 
