@@ -136,3 +136,27 @@ Mata Kuliah: Java Visual SIH-6406
 Project: Character Manager Sprint #1
 Bahasa Pemrograman: Java
 JDK: 17
+
+# Character Manager Sprint #3
+
+# Deskripsi Projek
+TP8 (Tugas Praktikum 8 — Character Manager Sprint #3) adalah pertemuan penting yang menandai transisi besar dari program berbasis teks (console) ke antarmuka grafis (GUI) menggunakan Java Swing.
+
+## Screenshot Output Terminal
+**Kondisi Awal (5 karakter):
+![Screenshoot Awal] (output-terminal sebelumTP08)
+kondisi setelah perubahan (8 karakter)
+![Screenshoot Setelah perubahan] (output-terminal sesudahTP08)
+
+# Aliran Data & Konsep MVC
+Aliran data dimulai dari kelas Main (berperan sebagai Controller inisialisasi) yang membuat objek karakter lalu memasukkannya ke dalam CharacterManager (berperan sebagai Model untuk menyimpan daftar karakter dan menghitung statistik rata-rata level). Objek CharacterManager tersebut kemudian diteruskan ke MainWindow (berperan sebagai View berbasis Java Swing) untuk merender daftar karakter beserta nilai rata-ratanya secara dinamis ke antarmuka pengguna. Pemisahan tanggung jawab ini menerapkan pola arsitektur MVC (Model-View-Controller), di mana logika pengelolaan data di dalam Model terisolasi sepenuhnya dari tampilan antarmuka pada View sehingga kode lebih modular dan mudah dipelihara.
+
+#  Daftar Karakter Baru & Alasan Pemilihan Tipe/Level
+Nama KarakterTipe (CharacterType)LevelAlasan Pemilihan Tipe & LevelRaka
+- MAGE 5 Menyeimbangkan komposisi serangan jarak jauh berbasis sihir dalam tim, dengan Level 5 sebagai level menengah yang kompetitif.
+- FreyaHEALER6Memperkuat daya tahan (support) tim karena sebelumnya baru terdapat satu 
+- Healer (Luna), dengan Level 6 untuk kapasitas pemulihan lebih tinggi.
+- OrionARCHER 6Menambah variasi penyerang fisik jarak jauh mendampingi Athena, dengan Level 6 guna meningkatkan rata-rata kekuatan keseluruhan tim.  
+ 
+# Link Google Docs - Bagian D
+[https://1drv.ms/b/c/251df1b2271152b7/IQDbopTQA6o0TomgWWKhvZvJAc8tDxn3JBCgbx3WMEovtIM?e=fhNfYt]
