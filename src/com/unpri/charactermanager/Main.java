@@ -1,4 +1,3 @@
-
 package com.unpri.charactermanager;
 
 import com.unpri.charactermanager.model.Character;
@@ -13,6 +12,8 @@ public class Main {
         public static void main(String[] args) {
 
                 CharacterManager manager = new CharacterManager();
+
+                // 8 karakter dengan variasi role dan level
 
                 manager.addCharacter(
                                 new Character("Arjuna", CharacterType.WARRIOR, 5));
@@ -29,7 +30,6 @@ public class Main {
                 manager.addCharacter(
                                 new Character("Luna", CharacterType.HEALER, 5));
 
-                // Tiga karakter tambahan
                 manager.addCharacter(
                                 new Character("Raka", CharacterType.MAGE, 5));
 
@@ -39,9 +39,13 @@ public class Main {
                 manager.addCharacter(
                                 new Character("Orion", CharacterType.ARCHER, 6));
 
+                // Menjalankan aplikasi
                 SwingUtilities.invokeLater(() -> {
+
                         MainWindow window = new MainWindow(manager);
+
                         window.setVisible(true);
+
                 });
         }
 }

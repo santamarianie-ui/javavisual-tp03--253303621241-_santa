@@ -178,3 +178,185 @@ Warna merupakan bagian dari tampilan antarmuka sehingga pengaturannya diletakkan
 5. setEnabled(false) untuk karakter level 1 — kartu dan label karakter dengan level 1 dibuat tidak aktif. Ini menjadi penanda visual bahwa karakter tersebut belum dapat digunakan, sekaligus menunjukkan penggunaan properti komponen Swing berdasarkan nilai level karakter.
 6. Link Google Docs — Bagian D
 Link Google Docs: [https://1drv.ms/b/c/251df1b2271152b7/IQBoXvXcTlMYRKOfSt3kbU5ZAW36omJbhIbst6hcX-5EPMg?e=lPLy1B] 
+
+# Character Manager Sprint #5
+## Layout, UI Responsif & Analisis MVC
+
+---
+
+## 1. Deskripsi Proyek
+
+Character Manager Sprint #5 merupakan pengembangan lanjutan dari proyek Character Manager Sprint #4. Pada tahap ini, aplikasi dikembangkan dengan fokus pada penggunaan Layout Manager, tampilan antarmuka yang responsif, serta penerapan konsep Model-View-Controller (MVC).
+
+Pengembangan ini bertujuan agar tampilan aplikasi tetap terstruktur ketika ukuran jendela diperbesar maupun diperkecil. Selain itu, aplikasi menggunakan beberapa jenis Layout Manager sesuai kebutuhan setiap komponen, seperti BorderLayout, GridLayout, dan BoxLayout.
+
+## 2. Tujuan Pengembangan
+
+Tujuan pengerjaan Character Manager Sprint #5 adalah:
+
+- Mengimplementasikan BorderLayout dengan empat wilayah utama.
+- Membuat daftar karakter menggunakan JScrollPane.
+- Menggunakan BoxLayout untuk menyusun legenda karakter.
+- Menambahkan panel statistik dengan GridLayout 2×2.
+- Membuat tampilan aplikasi yang responsif terhadap perubahan ukuran jendela.
+- Mempertahankan pemisahan Model dan View dalam konsep MVC.
+- Memahami fungsi preferred size, revalidate(), dan repaint().
+
+## 3. Struktur Tampilan Aplikasi
+
+Aplikasi Character Manager v0.5 menggunakan BorderLayout sebagai layout utama dengan empat wilayah yang memiliki fungsi berbeda.
+
+| Wilayah | Komponen | Fungsi |
+|---|---|---|
+| NORTH | Header dan statistik | Menampilkan judul serta informasi statistik karakter |
+| CENTER | Daftar karakter | Menampilkan kartu karakter menggunakan JScrollPane |
+| EAST | Legenda | Menampilkan jenis karakter berdasarkan CharacterType |
+| SOUTH | Status Bar | Menampilkan informasi aplikasi dan versi v0.5 |
+
+## 4. Wireframe Aplikasi
+
+Berikut merupakan rancangan tata letak aplikasi Character Manager Sprint #5.
+
+```text
++--------------------------------------------------+
+|                  HEADER (NORTH)                  |
+|               CHARACTER MANAGER                 |
+|--------------------------------------------------|
+|              PANEL STATISTIK 2x2                |
+|       Total       |       Rata-rata Level       |
+|       Warrior     |       Mage                  |
++--------------------------------------+-----------+
+|                                      |           |
+|          DAFTAR KARAKTER             |  LEGENDA  |
+|             (CENTER)                 |  (EAST)   |
+|                                      |           |
+|    +---------------+                 |  Warrior  |
+|    |   Character 1 |                 |  Mage     |
+|    +---------------+                 |  Archer   |
+|    +---------------+                 |  Healer   |
+|    |   Character 2 |                 |           |
+|    +---------------+                 |           |
+|                                      |           |
+|              JScrollPane             |           |
++--------------------------------------+-----------+
+|                  STATUS BAR                      |
+|  Character Manager - Ready                  v0.5 |
++--------------------------------------------------+
+```
+
+## 5. Implementasi Layout Manager
+
+### A. BorderLayout
+
+BorderLayout digunakan sebagai layout utama pada MainWindow. Layout ini membagi tampilan menjadi lima wilayah, yaitu NORTH, SOUTH, EAST, WEST, dan CENTER.
+
+Dalam proyek ini, empat wilayah digunakan untuk menempatkan header, daftar karakter, legenda, dan status bar. Penggunaan BorderLayout membuat susunan antarmuka lebih terorganisasi dan memudahkan pengaturan komponen.
+
+### B. GridLayout
+
+GridLayout digunakan untuk menyusun kartu karakter dalam bentuk dua kolom. Setiap kartu mendapatkan ukuran sel yang seragam sehingga informasi karakter dapat ditampilkan dengan rapi.
+
+GridLayout juga digunakan pada panel statistik dengan susunan 2×2 untuk menampilkan empat informasi, yaitu total karakter, rata-rata level, jumlah Warrior, dan jumlah Mage.
+
+### C. BoxLayout
+
+BoxLayout digunakan pada panel legenda dengan orientasi Y_AXIS. Dengan demikian, setiap jenis karakter ditampilkan secara vertikal.
+
+Penggunaan Box.createVerticalStrut() memberikan jarak antarlabel, sedangkan Box.createVerticalGlue() membantu mengatur ruang kosong pada panel legenda.
+
+### D. JScrollPane
+
+JScrollPane digunakan untuk membungkus panel daftar karakter. Ketika jumlah karakter melebihi area yang tersedia, pengguna dapat menggunakan scrollbar untuk melihat seluruh daftar karakter.
+
+Panel kartu dimasukkan ke dalam JScrollPane sebagai view, bukan menambahkan kartu langsung ke scroll pane.
+
+## 6. Panel Tambahan dan Alasan Pemilihan Layout
+
+Pada pengembangan Sprint #5, ditambahkan panel statistik menggunakan GridLayout 2×2.
+
+Panel ini dipilih karena dapat menampilkan empat informasi penting secara terstruktur dengan pembagian baris dan kolom yang sama. Informasi statistik menjadi lebih mudah dibaca karena setiap komponen memiliki ruang yang seragam.
+
+Layout yang tidak dipilih adalah FlowLayout untuk panel statistik. FlowLayout lebih sesuai untuk menyusun komponen secara berurutan dari kiri ke kanan, sedangkan panel statistik membutuhkan susunan yang konsisten dalam empat bagian. Oleh karena itu, GridLayout dianggap lebih sesuai dengan kebutuhan tampilan statistik aplikasi.
+
+## 7. Struktur Panel Bersarang
+
+Aplikasi menggunakan beberapa panel bersarang untuk memisahkan fungsi setiap bagian antarmuka. JPanel utama menggunakan BorderLayout untuk mengatur header, daftar karakter, legenda, dan status bar. Pada bagian header terdapat panel statistik dengan GridLayout 2×2, sedangkan daftar karakter menggunakan JPanel dengan GridLayout yang dibungkus oleh JScrollPane. Panel legenda menggunakan BoxLayout Y_AXIS agar setiap jenis karakter tersusun secara vertikal. Struktur ini membuat setiap komponen memiliki tanggung jawab tampilan yang lebih jelas dan mudah dikelola.
+
+## 8. Pengujian Responsivitas Aplikasi
+
+Pengujian dilakukan dengan mengubah ukuran jendela aplikasi untuk mengetahui apakah tata letak tetap berfungsi dengan baik.
+
+### Screenshot 1 – Ukuran Awal
+
+![Screenshot ukuran awal](output-terminal tampilan AwalTP12.png)
+
+Keterangan: Tampilan aplikasi ketika pertama kali dijalankan dengan ukuran jendela normal.
+
+### Screenshot 2 – Jendela Diperlebar
+
+![Screenshot jendela diperlebar](output-terminal jendela diperbesarTP12.png)
+
+Keterangan: Tampilan aplikasi ketika ukuran jendela diperbesar. Area daftar karakter menyesuaikan ruang yang tersedia.
+
+### Screenshot 3 – Jendela Diperkecil
+
+![Screenshot jendela diperkecil](output-terminal jendela diperkecilTP12.png)
+
+Keterangan: Tampilan aplikasi ketika ukuran jendela diperkecil hingga scrollbar pada daftar karakter terlihat.
+
+### Tabel Pengamatan Resize
+
+| Kondisi | Prediksi | Hasil Pengamatan |
+|---|---|---|
+| Ukuran awal | Seluruh wilayah tampil sesuai layout | (Isi sesuai hasil pengujian) |
+| Jendela diperlebar | Area CENTER menyesuaikan ruang yang tersedia | (Isi sesuai hasil pengujian) |
+| Jendela diperkecil | Daftar karakter dapat digulir menggunakan scrollbar | (Isi sesuai hasil pengujian) |
+
+## 9. Penerapan Konsep MVC
+
+Proyek Character Manager menggunakan konsep Model-View-Controller (MVC) untuk memisahkan tanggung jawab setiap bagian aplikasi.
+
+- **Model:** Mengelola data karakter dan aturan pengolahan data.
+- **View:** Mengatur tampilan aplikasi, komponen Swing, serta Layout Manager.
+- **Controller:** Mengatur komunikasi antara Model dan View.
+
+Seluruh pengaturan layout ditempatkan pada package view agar tidak bercampur dengan pengelolaan data pada package model.
+
+Pemisahan ini memudahkan pengembangan aplikasi. Sebagai contoh, tampilan daftar karakter dapat diubah dari JLabel menjadi JTable tanpa harus mengubah struktur data karakter pada Model.
+
+## 10. Penggunaan AppTheme
+
+AppTheme digunakan untuk mengelola warna, font, dan elemen visual aplikasi secara terpusat.
+
+Dengan adanya AppTheme, pengaturan tampilan tidak perlu ditulis berulang kali pada MainWindow. Pendekatan ini membuat kode lebih konsisten, mudah diperbarui, dan sesuai dengan prinsip pemisahan tanggung jawab antara data dan antarmuka.
+
+## 11. Kesimpulan
+
+Character Manager Sprint #5 merupakan pengembangan yang berfokus pada penerapan Layout Manager dan responsivitas antarmuka Java Swing.
+
+Melalui penggunaan BorderLayout, GridLayout, BoxLayout, dan JScrollPane, aplikasi memiliki susunan komponen yang lebih terstruktur dan mampu menyesuaikan tampilan berdasarkan ukuran jendela.
+
+Selain itu, penerapan konsep MVC dan AppTheme membantu menjaga struktur kode agar lebih mudah dikembangkan dan dipelihara.
+
+## 12. Dokumentasi Analisis Google Docs
+
+Dokumen analisis Layout dan MVC dibuat secara terpisah sesuai ketentuan tugas TP12.
+
+**Link Google Docs:** [<../../Users/Zahra Juwita/Downloads/JavaVisual_TP14_[253303621241]_[SantaMarianiElisabethSimangunsong].pdf>]
+
+## 13. Riwayat Commit
+
+Berikut merupakan pembagian commit selama proses pengerjaan Sprint #5:
+
+| No. | Commit | Keterangan |
+|---|---|---|
+| 1 | feat(view): implement BorderLayout structure | Implementasi layout utama |
+| 2 | feat(view): add scrollable character list and legend | Penambahan daftar karakter dan legenda |
+| 3 | feat(view): add statistics panel and status bar | Penambahan panel statistik dan status bar |
+| 4 | docs(tp12): complete README and documentation | Penyelesaian dokumentasi TP12 |
+
+---
+
+**Character Manager Sprint #5 – Java Visual**  
+Universitas Prima Indonesia  
+2026
