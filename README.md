@@ -360,3 +360,60 @@ Berikut merupakan pembagian commit selama proses pengerjaan Sprint #5:
 **Character Manager Sprint #5 – Java Visual**  
 Universitas Prima Indonesia  
 2026
+
+
+# Character Manager Sprint #6 — Form Input, Validasi & Analisis MVC
+
+## Deskripsi
+Sprint #6 mengembangkan aplikasi Character Manager dengan menambahkan form input karakter, validasi data, dan penerapan validasi pada Model dan View.
+
+## Fitur Baru
+1. Form input nama karakter menggunakan JTextField.
+2. Pemilihan role menggunakan JComboBox.
+3. Pengaturan level menggunakan JSpinner dengan rentang 1–99.
+4. Validasi nama kosong, panjang nama, format nama, dan nama duplikat.
+5. Validasi tambahan: nama tidak boleh memiliki dua spasi berurutan.
+6. Validasi Model: MAGE memiliki level maksimal 60.
+7. Batas maksimal koleksi adalah 20 karakter.
+8. Daftar karakter dan statistik diperbarui menggunakan refreshList().
+9. Pesan kesalahan ditampilkan langsung pada form.
+
+## Struktur File
+- model/Character.java
+- model/CharacterManager.java
+- view/CharacterFormPanel.java
+- view/MainWindow.java
+- view/AppTheme.java
+- Main.java
+
+## Tabel Pengujian
+
+| No | Input / Kondisi | Hasil yang Diharapkan | Hasil Aktual | Lapisan |
+|---|---|---|---|---|
+| 1 | Nama kosong | Ditolak | Berhasil ditolak | View |
+| 2 | Nama duplikat | Ditolak | Berhasil ditolak | View |
+| 3 | Nama lebih dari 20 karakter | Ditolak | Berhasil ditolak | View |
+| 4 | Nama mengandung angka | Ditolak | Berhasil ditolak | View |
+| 5 | Nama dengan dua spasi | Ditolak | Berhasil ditolak | View |
+| 6 | MAGE level 60 | Diterima | Berhasil ditambahkan | Model |
+| 7 | MAGE level 70 | Ditolak | Berhasil ditolak | Model |
+| 8 | WARRIOR level 5 | Diterima | Berhasil ditambahkan | Model / View |
+
+## Analisis MVC
+Validasi input dilakukan pada View sebelum data dikirim ke Model. Model tetap melakukan validasi untuk menjaga konsistensi data, termasuk batas level MAGE dan kapasitas koleksi. View bertanggung jawab menampilkan pesan kesalahan dan memperbarui tampilan daftar karakter.
+
+## Kompromi Sementara
+Pada Sprint #6, ActionListener masih ditempatkan pada MainWindow agar proses penambahan karakter dapat berjalan dengan sederhana. View juga berkomunikasi langsung dengan CharacterManager. Pada pengembangan berikutnya, proses tersebut dapat dipindahkan ke Controller agar penerapan pola MVC lebih terstruktur.
+
+## Teknologi
+- Java
+- Java Swing
+- JDK 17+
+- Visual Studio Code
+
+**Link Google Docs:** [https://1drv.ms/b/c/251df1b2271152b7/IQB_U-ao9S0dQIdUCXTY-dyCASuKSSdAxZLtGmGD5_YymGE?e=0CvkJM]
+
+# 3 Hasil output Terminal: 
+![Screenshot Output Terminal](output-terminal hasil nama kosong.png)
+![Screenshot Output Terminal](output-terminal- hasil nama duplikat.png)
+![Screenshot Output Terminal](output-terminal hasil tambah karakter.png)
